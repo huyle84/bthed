@@ -1,0 +1,5 @@
+# ML-DSA mode 5 (k=8,l=7,beta=120,gamma1=2^19,gamma2=261888), b_e=8 (B_e=128), attempts=100000, 41.0s
+mode,attempts,p_z,p_r,p_accept,p_fin_given_accept,t0_fail,hint_fail,signatures,verify_failures,expected_repetitions
+STD,100000,0.66396,0.39071,0.25941,0.99198,0,208,25733,0,3.886
+THED,100000,0.66381,0.39024,0.25858,0.99180,0,212,25646,23,3.899
+BTHED,100000,0.66381,0.15367,0.10196,0.99323,0,69,10127,0,9.875

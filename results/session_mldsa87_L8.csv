@@ -1,0 +1,8 @@
+# ML-DSA mode 5, L=8 attempts/session, b_e=3, sessions=5000
+mode,L,sessions,success,p_L,no_accepted_attempt,fin_fail,verify_failures
+STD,8,5000,4533,0.9066,431,36,0
+THED,8,5000,4476,0.8952,480,44,0
+BTHED,8,5000,2870,0.5740,2115,15,0
+# BTHED cleartext timings per session (mean, microseconds):
+timing_us,user_req,signer_C1,user_chal,signer_C2,user_fin,verify
+BTHED,71.3,444.2,22.4,278.9,41.1,146.6

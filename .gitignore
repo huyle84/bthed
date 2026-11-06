@@ -1,0 +1,7 @@
+dilithium/
+src/bthed_sim2
+src/bthed_sim3
+src/bthed_sim5
+*.o
+Icon
+.DS_Store

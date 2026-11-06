@@ -1,0 +1,18 @@
+# replicated secret sharing, n=3, t=2
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+3,2,3,2,3,3,4,4
+# replicated secret sharing, n=5, t=3
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+5,3,10,6,10,10,16,16
+# replicated secret sharing, n=7, t=4
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+7,4,35,20,35,35,64,64
+# replicated secret sharing, n=10, t=6
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+10,6,252,126,210,210,638,638
+# replicated secret sharing, n=16, t=9
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+16,9,12870,6435,11440,11440,39203,39203
+# replicated secret sharing, n=20, t=11
+n,t,total_shares,shares_per_party,active_sets,reconstruct_ok,coalitions_checked,privacy_ok
+20,11,184756,92378,167960,167960,616666,616666
