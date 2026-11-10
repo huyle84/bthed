@@ -31,7 +31,7 @@ def se(p, n):
 
 def heur(ps, mode):
     pz = ((2 * ps['g1'] - 2 * ps['beta'] - 1) / (2 * ps['g1'])) ** (256 * ps['l'])
-    m = 2 * ps['beta'] if mode == 'BTHED' else ps['beta']
+    m = 2 * ps['beta'] if mode == 'DOUBLE' else ps['beta']
     pr = ((2 * ps['g2'] - 2 * m - 1) / (2 * ps['g2'])) ** (256 * ps['k'])
     return pz, pr
 
@@ -68,14 +68,14 @@ out.append('')
 # ---------------------------------------------------------------- L
 out += ['## 2. Number of parallel attempts L', '',
         'Since attempts are i.i.d. and Fin only depends on the first accepted attempt, '
-        '`p_L = (1-(1-p_accept)^L) * P[Fin ok | accept]`. `L_eq` is the smallest L for which BTHED reaches the '
-        'success probability of THED with L = 8 (THED\'s choice); `L(1e-3)`/`L(1e-6)` make the probability that '
+        '`p_L = (1-(1-p_accept)^L) * P[Fin ok | accept]`. `L_eq` is the smallest L for which a mode reaches the '
+        'success probability of BTHED (= the THED rule) with L = 8; `L(1e-3)`/`L(1e-6)` make the probability that '
         '*no* attempt is accepted at most 10^-3 / 10^-6.', '',
-        '| Param | Mode | p_L(8) | p_L(20) | L_eq (vs THED, L=8) | L(1e-3) | L(1e-6) |', '|---|---|---|---|---|---|---|']
+        '| Param | Mode | p_L(8) | p_L(20) | L_eq (vs BTHED, L=8) | L(1e-3) | L(1e-6) |', '|---|---|---|---|---|---|---|']
 for key in PS:
-    if (key, 'THED') not in stats: continue
-    tgt = pL(*stats[(key, 'THED')][:2], 8)
-    for md in ('STD', 'THED', 'BTHED'):
+    if (key, 'BTHED') not in stats: continue
+    tgt = pL(*stats[(key, 'BTHED')][:2], 8)
+    for md in ('STD', 'BTHED', 'DOUBLE'):
         pa, pf, _ = stats[(key, md)]
         leq = next(L for L in range(1, 500) if pL(pa, pf, L) >= tgt * (1 - 1e-12))
         l3 = math.ceil(math.log(1e-3) / math.log(1 - pa)); l6 = math.ceil(math.log(1e-6) / math.log(1 - pa))
@@ -123,9 +123,9 @@ out.append('')
 
 # ---------------------------------------------------------------- noise size
 out += ['## 6. Effect of the commitment-noise bound B_e on verification correctness', '',
-        'Lemma 5 of the paper needs B_e ≤ β with margin γ2−2β. The THED rule (margin γ2−β) is also *exactly* '
+        'BTHED uses the rule of THED (margin γ2−β), which is *exactly* '
         'correct as long as B_e ≤ β, since |w0 − c s2 − e| < (γ2−β) + B_e ≤ γ2 (Lemma 1). Large B_e probes the boundary '
-        '(BTHED tolerates B_e ≤ 2β).', '',
+        '(the doubled margin γ2−2β, mode DOUBLE, tolerates B_e ≤ 2β; it is kept for comparison only).', '',
         '| Param | b_e | B_e | β | Mode | signatures | verify failures |', '|---|---|---|---|---|---|---|']
 for f in sorted(glob.glob(os.path.join(R, 'stats_*_be*.csv'))):
     key, b = re.search(r'stats_(\w+)_be(\d+)', f).groups()

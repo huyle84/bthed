@@ -21,8 +21,9 @@ ML-DSA verifier.
 Three signing rules are compared on the **same random bits** (paired comparison):
 
 * `STD`   – standard ML-DSA attempt (`e = 0`, margin `γ2 − β`);
-* `THED`  – noisy commitment, margin `γ2 − β` (THED / Quorus rule);
-* `BTHED` – noisy commitment, margin `γ2 − 2β` (this paper).
+* `BTHED`  – noisy commitment, margin `γ2 − β` (this paper; same rule as THED / Quorus);
+* `DOUBLE` – noisy commitment, doubled margin `γ2 − 2β` (comparison only: the proof does not need it,
+  and it costs 2.5–3.5 times more parallel attempts).
 
 **Not simulated (Stages 2–3):** FHE encryption and homomorphic evaluation, threshold
 decryption with flooding noise, NIZK arguments. The ring-Darkmatter PRF is replaced by

@@ -12,8 +12,8 @@
  *   - verification with the UNMODIFIED reference ML-DSA verifier.
  * Three signing rules are compared:
  *   STD   : standard ML-DSA attempt (e = 0, margin gamma2 - beta),
- *   THED  : noisy commitment (e != 0), margin gamma2 - beta  [THED / BdCE+26],
- *   BTHED : noisy commitment (e != 0), margin gamma2 - 2*beta [this paper].
+ *   BTHED  : noisy commitment (e != 0), margin gamma2 - beta (this paper; same rule as THED / BdCE+26),
+ *   DOUBLE : noisy commitment (e != 0), doubled margin gamma2 - 2*beta (comparison only; not needed).
  *
  * Stand-ins (documented in README): the ring-Darkmatter PRF and H_x are
  * replaced by SHAKE256; FHE ciphertexts, threshold decryption and NIZK
@@ -41,8 +41,8 @@
 #include "randombytes.h"
 
 #define NMODES 3
-enum { M_STD = 0, M_THED = 1, M_BTHED = 2 };
-static const char *mode_name[NMODES] = {"STD", "THED", "BTHED"};
+enum { M_STD = 0, M_BTHED = 1, M_DBL = 2 };
+static const char *mode_name[NMODES] = {"STD", "BTHED", "DOUBLE"};
 
 #define MAX_BE_BITS 8
 #define VBYTES_MAX (L * POLYZ_PACKEDBYTES + K * N * MAX_BE_BITS / 8)
@@ -160,7 +160,7 @@ static int c2_attempt(polyvecl *z, const keys_t *k, const c1_out_t *o,
   polyveck_invntt_tomont(&r);
   polyveck_sub(&r, &o->w0, &r);
   polyveck_reduce(&r);
-  int32_t margin = (mode == M_BTHED) ? GAMMA2 - 2 * BETA : GAMMA2 - BETA;
+  int32_t margin = (mode == M_DBL) ? GAMMA2 - 2 * BETA : GAMMA2 - BETA;
   int rok = !polyveck_chknorm(&r, margin);
   return zok | (rok << 1);
 }

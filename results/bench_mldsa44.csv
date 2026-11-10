@@ -1,11 +1,11 @@
 # ML-DSA mode 2, b_e=3, median over 2001 reps (ns)
 operation,median_ns
-mldsa_keygen,51515
-mldsa_sign_reference(full; with rejections),195475
-mldsa_verify_reference,57653
-prf_stand_in_shake256(one_attempt_bits),4554
-C1_one_attempt(unpack; Ay+e; decompose),21257
-user_chal_one_attempt(H(mu||w1)),2124
-C2_one_attempt(SIB; z; r; tests),19282
-user_fin_public(t0-test; MakeHint; pack),34400
-verify_BTHED_signature_reference,57425
+mldsa_keygen,50407
+mldsa_sign_reference(full; with rejections),175459
+mldsa_verify_reference,55216
+prf_stand_in_shake256(one_attempt_bits),4560
+C1_one_attempt(unpack; Ay+e; decompose),20022
+user_chal_one_attempt(H(mu||w1)),2120
+C2_one_attempt(SIB; z; r; tests),17822
+user_fin_public(t0-test; MakeHint; pack),32145
+verify_BTHED_signature_reference,55127

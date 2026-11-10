@@ -2,7 +2,7 @@
 
 Stage-1 (cleartext) simulator of **BTHED – Blind Threshold Dilithium from FHE**:
 the plaintext logic of the BTHED signing protocol (noisy-commitment ML-DSA signing
-with doubled low-bits margin, XOR-blinded signing randomness, user-side
+with the low-bits margin of THED, XOR-blinded signing randomness, user-side
 finalization from public data, replicated secret sharing), built on the
 [pq-crystals ML-DSA reference implementation](https://github.com/pq-crystals/dilithium)
 (FIPS 204). Every produced signature is checked with the unmodified reference verifier.
@@ -20,3 +20,7 @@ cd src && make && ./run_all.sh && python3 analyze.py   # ~10 min, writes ../resu
 
 The pq-crystals code is not redistributed here; it is fetched by the user (see above).
 License: MIT (this repository only).
+
+## Stage 2
+
+The homomorphic layer (two-key threshold RLWE layer, arithmetic core, cost of one homomorphic comparison) is in [`stage2/`](stage2/README.md).
